@@ -29,5 +29,7 @@ Route :: group(['middleware'=>'auth'], function (){
 
 // FROM PERFORM UNIT
 
-Route::get('auth/unit/{mac_id}', 'TestController@index');
+Route::get('unit/auth/{mac_id}', 'TestController@index');
+Route::post('unit/amounts', 'TestController@amonts');
+
 

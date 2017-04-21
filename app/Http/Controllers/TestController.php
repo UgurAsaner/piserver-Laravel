@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Status;
 use App\UnitConfig;
 
 class TestController extends Controller
@@ -20,6 +21,20 @@ class TestController extends Controller
         }
         else
             return 'false';
+    }
+
+    function amounts(){
+
+        if(request()->has('type') && request()->has('amount') ){
+
+            $status = new Status;
+            $status->type = request()->get('type');
+            $status->amount = request()->get('amount');
+            $status->save();
+        }
+
+
+
     }
 
 }
