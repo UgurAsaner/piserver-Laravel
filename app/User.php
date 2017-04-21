@@ -11,5 +11,6 @@ class User extends Authenticatable
 
     protected $table = 'user';
     public $timestamps = false;
+    protected $hidden ='token';
 
 }
