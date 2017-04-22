@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Middleware;
+namespace Symfony\Component\HttpFoundation\Response;
 
+use App\UnitConfig;
+use App\User;
 use Closure;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Response;
 
 class RedirectIfAuthenticated
 {
@@ -17,10 +20,7 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check()) {
-            return redirect('/home');
-        }
 
-        return $next($request);
+        return Response::HTTP_UNAUTHORIZED;
     }
 }

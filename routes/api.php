@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Symfony\Component\Routing\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,20 +14,37 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// FROM CLIENT
+Route::group(['middleware' => 'authorize'], function () {
+
+    Route::get('food','AmountController@getFoodAmount');
+    Route::get('water','AmountController@getWaterAmount');
+
+    Route::get('food/current','AmountController@getCurrentFood');
+    Route::get('water/current','AmountController@getCurrentWater');
+
+    Route::post('food','AmountController@addFood');
+    Route::post('water','AmountController@addWater');
+
+});
+
+// FROM CLIENT
+Route::group(['middleware' => 'tokenize'], function () {
+
+    Route::get('auth', 'TokenController@index');
+
+});
+
+// FROM UNIT
+Route::group(['middleware' => 'authorize_unit'], function () {
+
+    Route::post('amounts', 'UnitController@amounts');
+
+
 });
 
 
-// FROM CLIENT
-
-Route::get('food', 'TestController@lastFoodAmount');
 
 
-
-// FROM PERFORM UNIT
-
-Route::get('unit/auth', 'TestController@index');
-Route::post('unit/amounts', 'TestController@amounts');
 
 
