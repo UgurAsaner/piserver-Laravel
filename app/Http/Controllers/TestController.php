@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Request;
 use App\Status;
 use App\UnitConfig;
 
 class TestController extends Controller
 {
-    function index(){
+    function index(Request $request){
 
-        $mac_id = request()->header('mac_id');
+        $mac_id = $request->header('mac_id');
         $unit = UnitConfig::find(1);
         $reference = $unit->mac_id;
 
