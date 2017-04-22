@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Request;
 use App\Status;
 use App\UnitConfig;
+use Illuminate\Http\Request;
 
 class TestController extends Controller
 {
