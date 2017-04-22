@@ -22,7 +22,7 @@ class TestController extends Controller
             return 'true';
         }
         else
-            return 'false';
+            return $mac_id;
     }
 
     function amounts(){
