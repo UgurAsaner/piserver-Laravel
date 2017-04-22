@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 use App\Status;
 use App\UnitConfig;
-use Illuminate\Http\Request;
 
 class TestController extends Controller
 {
-    function index(Request $request){
+    function index(){
 
-        $mac_id = $request->header('mac_id');
+        $mac_id = app('request')->header('mac_id');
         $unit = UnitConfig::find(1);
         $reference = $unit->mac_id;
 
