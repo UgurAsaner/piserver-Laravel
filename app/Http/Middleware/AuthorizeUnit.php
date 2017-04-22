@@ -21,7 +21,7 @@ class AuthorizeUnit
         $headers = getallheaders();
 
         try{
-            $macId = $headers['mac_id'];
+            $macId = $headers['macId'];
 
             $macIdExists = true;
 
