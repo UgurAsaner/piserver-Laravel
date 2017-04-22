@@ -6,8 +6,9 @@ use App\UnitConfig;
 
 class TestController extends Controller
 {
-    function index($mac_id){
+    function index(){
 
+        $mac_id = request()->header('mac_id');
         $unit = UnitConfig::find(1);
         $reference = $unit->mac_id;
 
@@ -33,7 +34,16 @@ class TestController extends Controller
             $status->save();
         }
 
+    }
 
+    function lastFoodAmounts(){
+
+        $amounts = Status::where('type','food')
+                            ->orderBy('timestamp','desc')
+                            ->take(10)
+                            ->get();
+
+        return $amounts;
 
     }
 

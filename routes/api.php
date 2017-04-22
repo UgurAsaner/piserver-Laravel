@@ -19,17 +19,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 // FROM CLIENT
-Route :: group(['middleware'=>'auth'], function (){
 
+Route::get('food', 'TestController@lastFoodAmount');
 
-
-
-});
 
 
 // FROM PERFORM UNIT
 
-Route::get('unit/auth/{mac_id}', 'TestController@index');
+Route::get('unit/auth', 'TestController@index');
 Route::post('unit/amounts', 'TestController@amounts');
 
 
