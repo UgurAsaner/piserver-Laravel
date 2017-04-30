@@ -54,8 +54,8 @@ class Kernel extends HttpKernel
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'authorize' => \App\Http\Middleware\Authorize::class,
-        'authorize_unit' => \App\Http\Middleware\AuthorizeUnit::class,
+        'auth_client' => \App\Http\Middleware\Authorize::class,
+        'auth_unit' => \App\Http\Middleware\AuthorizeUnit::class,
         'tokenize' => \App\Http\Middleware\Tokenize::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
     ];

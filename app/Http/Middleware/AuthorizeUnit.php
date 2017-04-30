@@ -8,13 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AuthorizeUnit
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
-     */
+
     public function handle($request, Closure $next)
     {
         $unauthorized = new Response($content='Unauthorized',$status=401);
@@ -33,8 +27,16 @@ class AuthorizeUnit
 
             $unitExist = UnitConfig::where('mac_id',$macId)->exists();
 
-            if($unitExist)
+            if($unitExist) {
+
+                $unit = UnitConfig::find(1);
+
+                $unit->ip = $request->ip();
+
+                $unit->save();
+
                 return $next($request);
+            }
             else
                 return $unauthorized;
         }

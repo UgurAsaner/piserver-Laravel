@@ -28,12 +28,20 @@ class Tokenize
 
             $userExists = User::where([
                 'name' => $username,
-                'pasword' => $password])->exists();
+                'password' => $password])->exists();
 
-            if ($userExists)
+            if ($userExists) {
+
+                $userid = User::where([
+                    'name' => $username,
+                    'password' => $password])->first()->id;
+
+                $request->userid = $userid;
+
                 return $next($request);
-            else
+            } else
                 return $unauthorized;
+
         }
 
         return $unauthorized;

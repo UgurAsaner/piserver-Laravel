@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Http\Request;
-use Symfony\Component\Routing\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,17 +13,21 @@ use Symfony\Component\Routing\Route;
 |
 */
 
+Route::get('test',function (){
+    return 4;
+});
+
 // FROM CLIENT
-Route::group(['middleware' => 'authorize'], function () {
+Route::group(['middleware' => 'auth_client'], function () {
 
-    Route::get('food','AmountController@getFoodAmount');
-    Route::get('water','AmountController@getWaterAmount');
+    Route::get('food','ClientController@getFoodAmount');
+    Route::get('water','ClientController@getWaterAmount');
 
-    Route::get('food/current','AmountController@getCurrentFood');
-    Route::get('water/current','AmountController@getCurrentWater');
+    Route::get('food/current','ClientController@getCurrentFood');
+    Route::get('water/current','ClientController@getCurrentWater');
 
-    Route::post('food','AmountController@addFood');
-    Route::post('water','AmountController@addWater');
+    Route::post('food','ClientController@addFood');
+    Route::post('water','ClientController@addWater');
 
 });
 
@@ -36,9 +39,9 @@ Route::group(['middleware' => 'tokenize'], function () {
 });
 
 // FROM UNIT
-Route::group(['middleware' => 'authorize_unit'], function () {
+Route::group(['middleware' => 'auth_unit'], function () {
 
-    Route::post('amounts', 'UnitController@amounts');
+    Route::post('status', 'UnitController@status');
 
 
 });

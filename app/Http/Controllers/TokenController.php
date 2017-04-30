@@ -9,10 +9,23 @@
 namespace App\Http\Controllers;
 
 
+use App\Request;
+use App\User;
+
 class TokenController extends Controller
 {
 
     function index(){
+
+        $id = Request()->userid;
+
+        $user = User::find($id);
+
+        $user->token = str_random(10);
+
+        $user->save();
+
+        return Response($user->token);
 
 
     }

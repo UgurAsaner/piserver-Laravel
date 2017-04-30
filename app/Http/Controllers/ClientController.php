@@ -47,12 +47,13 @@ class ClientController extends Controller
     }
     function addFood(){
 
-
+        return (new UnitController())->addFood();
 
     }
 
     function addWater(){
 
+        return (new UnitController())->addWater();
 
     }
 
