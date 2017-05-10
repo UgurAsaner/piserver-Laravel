@@ -17,16 +17,19 @@ class TokenController extends Controller
 
     function index(){
 
-        $id = Request()->userid;
+        $userId = Request()->userid;
 
-        $user = User::find($id);
+        $user = User::find($userId);
 
-        $user->token = str_random(10);
+        $user->token = str_random(20);
 
         $user->save();
 
-        return Response($user->token);
+        $response = [
+          'token' => $user->token
+        ];
 
+        return Response($response);
 
     }
 

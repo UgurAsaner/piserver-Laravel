@@ -29,7 +29,8 @@ class AuthorizeUnit
 
             if($unitExist) {
 
-                $unit = UnitConfig::find(1);
+
+                $unit = UnitConfig::where('mac_id',$macId)->first();
 
                 $unit->ip = $request->ip();
 

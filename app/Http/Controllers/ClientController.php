@@ -10,6 +10,8 @@ namespace App\Http\Controllers;
 
 
 use App\Status;
+use App\UnitConfig;
+use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
@@ -36,25 +38,35 @@ class ClientController extends Controller
 
     function getCurrentFood(){
 
-        // Send Request to Unit
+        $ip = UnitConfig::find(1)->ip;
 
+        $url = $ip . ':1995/food';
+
+        $request = Request::create($url,'GET');
+
+        return $request;
     }
 
     function getCurrentWater(){
 
-        // Send Request to Unit
+        $ip = UnitConfig::find(1)->ip;
+
+        $url = $ip . ':1995/food';
+
+        $request = Request::create($url,'GET');
+
+        return $request;
 
     }
+
     function addFood(){
 
         return (new UnitController())->addFood();
-
     }
 
     function addWater(){
 
         return (new UnitController())->addWater();
-
     }
 
 }

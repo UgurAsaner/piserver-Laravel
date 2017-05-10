@@ -43,7 +43,6 @@ Route::group(['middleware' => 'auth_unit'], function () {
 
     Route::post('status', 'UnitController@status');
 
-
 });
 
 

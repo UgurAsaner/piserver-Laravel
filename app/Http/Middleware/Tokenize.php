@@ -39,8 +39,7 @@ class Tokenize
                 $request->userid = $userid;
 
                 return $next($request);
-            } else
-                return $unauthorized;
+            }
 
         }
 

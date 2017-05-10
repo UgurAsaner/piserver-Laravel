@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 
 use App\Status;
+use App\UnitConfig;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -41,14 +42,23 @@ class UnitController extends Controller
 
     function addFood(){
 
+        $ip = UnitConfig::find(1)->ip;
 
+        $url = $ip . ':1995/food/';
 
+        $request = Request::create($url,'POST');
 
+        return $request;
     }
 
     function addWater(){
 
+        $ip = UnitConfig::find(1)->ip;
 
+        $url = $ip . ':1995/water/';
 
+        $request = Request::create($url,'POST');
+
+        return $request;
     }
 }
