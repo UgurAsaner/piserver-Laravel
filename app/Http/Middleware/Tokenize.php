@@ -41,12 +41,12 @@ class Tokenize
             }else{
 
                 $errorResponse = ['error' => 'Invalid Username or Password'];
-                return new Response($content=$errorResponse, $status=401);
+                return Response($errorResponse,401);
             }
 
         }
 
         $errorResponse = ['error' => 'Credentials Required'];
-        return new Response($content=$errorResponse, $status=401);
+        return Response($errorResponse,401);
     }
 }
