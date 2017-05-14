@@ -30,12 +30,12 @@ class Authorize
                 return $next($request);
             else {
 
-                $errorResponse = ["error" => "Invalid Token"];
+                $errorResponse = ['error' => 'Invalid Token'];
                 return new Response($content=$errorResponse, $status=401);
             }
         }
 
-        $errorResponse = ["error" => "Token required"];
+        $errorResponse = ['error' => 'Token required'];
         return new Response($content=$errorResponse, $status=401);
     }
 }
