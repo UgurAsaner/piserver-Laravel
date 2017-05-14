@@ -44,7 +44,7 @@ class UnitController extends Controller
 
         $ip = UnitConfig::find(1)->ip;
 
-        $url = $ip . ':1995/food/';
+        $url = $ip . ':8080/food/';
 
         $request = Request::create($url,'POST');
 
@@ -55,7 +55,7 @@ class UnitController extends Controller
 
         $ip = UnitConfig::find(1)->ip;
 
-        $url = $ip . ':1995/water/';
+        $url = $ip . ':8080/water/';
 
         $request = Request::create($url,'POST');
 

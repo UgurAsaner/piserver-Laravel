@@ -10,7 +10,6 @@ class Tokenize
 {
     public function handle($request, Closure $next)
     {
-        $unauthorized = new Response($content='Unauthorized',$status=401);
         $headers = getallheaders();
 
         
@@ -39,10 +38,15 @@ class Tokenize
                 $request->userid = $userid;
 
                 return $next($request);
+            }else{
+
+                $errorResponse = ["error" => "Invalid Username or Password"];
+                return new Response($content=$errorResponse, $status=401);
             }
 
         }
 
-        return $unauthorized;
+        $errorResponse = ["error" => "Credentials Required"];
+        return new Response($content=$errorResponse, $status=401);
     }
 }

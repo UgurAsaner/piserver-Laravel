@@ -11,7 +11,6 @@ class Authorize
 {
     public function handle($request, Closure $next)
     {
-        $unauthorized = new Response($content='Unauthorized',$status=401);
         $headers = getallheaders();
 
         try{
@@ -29,10 +28,14 @@ class Authorize
 
             if($userExists)
                 return $next($request);
-            else
-                return $unauthorized;
+            else {
+
+                $errorResponse = ["error" => "Invalid Token"];
+                return new Response($content=$errorResponse, $status=401);
+            }
         }
 
-        return $unauthorized;
+        $errorResponse = ["error" => "Token required"];
+        return new Response($content=$errorResponse, $status=401);
     }
 }
