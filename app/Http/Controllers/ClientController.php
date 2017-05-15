@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 use App\Status;
 use App\UnitConfig;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -19,7 +20,7 @@ class ClientController extends Controller
 
         $amount = Status::where('type','food')
             ->orderBy('timestamp','desc')
-            ->take(10)
+            ->take(20)
             ->get();
 
         return $amount;
@@ -29,7 +30,7 @@ class ClientController extends Controller
 
         $amount = Status::where('type','water')
             ->orderBy('timestamp','desc')
-            ->take(10)
+            ->take(20)
             ->get();
 
         return $amount;
@@ -40,33 +41,45 @@ class ClientController extends Controller
 
         $ip = UnitConfig::find(1)->ip;
 
-        $url = $ip . ':1021/food';
+        $url = $ip . ':1995/food';
 
-        $request = Request::create($url,'GET');
-
-        return $request;
+        return $this->makeRequest('GET',$url);
     }
 
     function getCurrentWater(){
 
         $ip = UnitConfig::find(1)->ip;
 
-        $url = $ip . ':1021/food';
+        $url = $ip . ':1995/water';
 
-        $request = Request::create($url,'GET');
+        return $this->makeRequest('GET',$url);
+    }
 
-        return $request;
+    function makeRequest($method,$url){
 
+        $client = new Client();
+
+        $response = $client->request($method,$url);
+
+        return $response;
     }
 
     function addFood(){
 
-        return (new UnitController())->addFood();
+        $ip = UnitConfig::find(1)->ip;
+
+        $url = $ip . ':1995/food/';
+
+        return $this->makeRequest('POST',$url);
     }
 
     function addWater(){
 
-        return (new UnitController())->addWater();
+        $ip = UnitConfig::find(1)->ip;
+
+        $url = $ip . ':1995/water/';
+
+        return $this->makeRequest('POST', $url);
     }
 
 }

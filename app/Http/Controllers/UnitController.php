@@ -40,25 +40,4 @@ class UnitController extends Controller
 
     }
 
-    function addFood(){
-
-        $ip = UnitConfig::find(1)->ip;
-
-        $url = $ip . ':8080/food/';
-
-        $request = Request::create($url,'POST');
-
-        return $request;
-    }
-
-    function addWater(){
-
-        $ip = UnitConfig::find(1)->ip;
-
-        $url = $ip . ':8080/water/';
-
-        $request = Request::create($url,'POST');
-
-        return $request;
-    }
 }
