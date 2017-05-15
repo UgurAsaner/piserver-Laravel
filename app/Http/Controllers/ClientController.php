@@ -40,7 +40,7 @@ class ClientController extends Controller
 
         $ip = UnitConfig::find(1)->ip;
 
-        $url = $ip . ':1995/food';
+        $url = $ip . ':1021/food';
 
         $request = Request::create($url,'GET');
 
@@ -51,7 +51,7 @@ class ClientController extends Controller
 
         $ip = UnitConfig::find(1)->ip;
 
-        $url = $ip . ':1995/food';
+        $url = $ip . ':1021/food';
 
         $request = Request::create($url,'GET');
 
