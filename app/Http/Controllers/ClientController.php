@@ -67,7 +67,8 @@ class ClientController extends Controller
 
         }catch (RequestException $re){
 
-            return $re->getMessage();
+            $errorResponse = ['error' => 'Perform Unit Does Not Respond'];
+            return Response($errorResponse,503);
 
         }
     }
