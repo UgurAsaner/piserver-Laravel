@@ -12,7 +12,7 @@ namespace App\Http\Controllers;
 use App\Status;
 use App\UnitConfig;
 use GuzzleHttp\Client;
-use Illuminate\Http\Request;
+use GuzzleHttp\Exception\RequestException;
 
 class ClientController extends Controller
 {
@@ -59,9 +59,17 @@ class ClientController extends Controller
 
         $client = new Client();
 
-        $response = $client->request($method,$url);
+        try{
 
-        return $response;
+            $response = $client->request($method,$url);
+
+            return $response;
+
+        }catch (RequestException $re){
+
+            return $re->getMessage();
+
+        }
     }
 
     function addFood(){
