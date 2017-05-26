@@ -29,7 +29,7 @@ class UnitController extends Controller
 
                 $status->type = $givenStatus['type'];
                 $status->amount = $givenStatus['amount'];
-                $status->timestamp = Carbon::now()->toDayDateTimeString();
+                $status->timestamp = Carbon::now()->getTimestamp();
                 $status->save();
             }
         }catch (Exception $e){
